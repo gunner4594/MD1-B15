@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuyển đổi giữa feet và meter</title>
+</head>
+<body>
+<table>
+  <tr>
+    <th>Value</th>
+    <th>From</th>
+    <th>To</th>
+        <th>Convert</th>
+  </tr>
+  <tr>
+    <td><input type="text" id="giatri" oninput="feetToMeter(this.value)" onchange="feetToMeter(this.value)"></td>
+      <td>
+          <select id="select1">
+              <option value="Feet">Feet</option>
+              <option value="Meter">Meter</option>
+          </select>
+      </td>
+      <td>
+          <select id="select2">
+              <option value="Feet">Feet</option>
+              <option value="Meter">Meter</option>
+          </select>
+      </td>
+      <td style="text-align: center"><div><span id="giatrichuyendoi"></span></div></td>
+  </tr>
+</table>
+<script>
+    function feetToMeter (input) {
+        input = parseFloat(input);
+        let select1 = document.getElementById('select1').value;
+        let select2 = document.getElementById('select2').value;
+        if ((select1==='Feet') && (select2==='Meter')) {
+            document.getElementById('giatrichuyendoi').innerHTML = 0.305 * input;
+        } if ((select1==='Meter') && (select2==='Feet')) {
+            document.getElementById('giatrichuyendoi').innerHTML = 3.279 * input
+        }
+    }
+</script>
+</body>
+</html>
