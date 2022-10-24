@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ứng dụng quản lý sản phẩm</title>
+</head>
+<body>
+<h4>Add New Product</h4>
+<input type="text" id="newProduct"/>
+<input type="button" value="Add" onclick="add()" id="add"><br><br>
+<div id="form-edit"></div>
+<h4>Display All Product</h4>
+<table>
+    <tr>
+        <th>Product name</th>
+        <th id="quantity"></th>
+    </tr>
+    <tbody id="listProduct">
+    </tbody>
+</table>
+<script>
+    let list = [];
+
+    function add() {
+        let input = document.getElementById('newProduct').value;
+        list.push(input)
+        show()
+        document.getElementById('newProduct').value = '';
+    }
+
+    function show() {
+        let html = '';
+        for (let i=0;i<list.length;i++) {
+            html += ` <tr>
+               <td>${list[i]}</td>
+               <td><button onclick="showFormEdit(${i})">Edit</button></td>
+               <td><button onclick="deleteItem(${i})">Delete</button></td>
+               </tr>`
+        }
+        document.getElementById('listProduct').innerHTML = html;
+        document.getElementById('quantity').innerHTML = list.length + '';
+        document.getElementById('newProduct').innerHTML = '';
+    }
+
+    function deleteItem (index) {
+        list.splice(index,1)
+        show()
+    }
+
+    function showFormEdit (index) {
+        document.getElementById('form-edit').innerHTML = `
+        <input type="text" id="editName">
+        <button onclick="editItem(${index})">Save</button>
+        `
+        document.getElementById('editName').value = list[index];
+    }
+
+    function editItem(index) {
+        let newName = document.getElementById('editName').value;
+        list[index] = newName;
+        show()
+    }
+
+
+</script>
+</body>
+</html>
